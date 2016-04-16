@@ -1,0 +1,262 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+<title>后台管理主页</title>
+
+<!--                       CSS                       -->
+
+<!-- Reset Stylesheet -->
+<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+
+<!-- Main Stylesheet -->
+<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+
+<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="__PUBLIC__/jquery-ui-1.10.2.custom/css/south-street/jquery-ui-1.10.2.custom.css"/>
+<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
+<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
+
+	<!--精确到时分秒的时间控件,要配合上面的使用-->
+<link type="text/css" href="__PUBLIC__/css/jquery-ui-timepicker-addon.css" rel="stylesheet" />
+<script type="text/javascript" src="__PUBLIC__/scripts/jquery-ui-timepicker-addon.js"></script>
+<script type="text/javascript" src="__PUBLIC__/scripts/jquery-ui-timepicker-zh-CN.js"></script>
+
+
+<style type="text/css">
+.reply {
+	color: red;
+}
+
+.dis {
+	display: none;
+}
+
+.tarea {
+	width: 500px;
+	height: 200px;
+	display: block;
+}
+
+tr {
+	border-bottom: 1px dotted green;
+	border-top: 1px dotted green;
+}
+
+tfoot tr {
+	border: 0px;
+}
+
+input {
+	margin: 5px;
+}
+
+.words_edit,.reply_edit {
+	display: none;
+}
+
+.reply_edit {
+	color: red;
+}
+</style>
+
+<script type="text/javascript">
+	$(function() {
+		//悬停的行显示灰色
+		$('tr').hover(function() {
+			$(this).css('background', '#F0F0F0');
+		}, function() {
+			$(this).css('background', '');
+		});
+
+		//点击回复的时候禁止默认事件和将textarea显示出来
+		$('.reply_icon')
+				.click(
+						function(event) {
+							event.preventDefault();
+							$(this)
+									.parents('td')
+									.prev()
+									.find('.dis')
+									.toggle(
+											1000,
+											function() {
+
+												if ($('.reply_icon').attr(
+														'title') == '回复') {
+													$('.reply_icon')
+															.attr('title',
+																	'取消回复');
+												} else {
+													$('.reply_icon').attr(
+															'title', '回复');
+												}
+											});
+
+							/*异步获取服务器时间*/
+							$.get("__APP__/Public/ajaxTime", function(data,
+									status) {
+								$(".time").val(data);
+							}, "json") //返回的是json数据一定要指定返回的类型
+						});
+
+		//jquer能够显示时分秒的时间插件
+		$(".time").datetimepicker({
+			/*jquery原生的datepicker的方法*/
+			showOn : "button",
+			buttonImage : "__PUBLIC__/images/icons/date.png",
+			buttonImageOnly : true,
+			showSecond : true,
+			buttonText : '选择日期',
+			dateFormat : 'yy-mm-dd',
+
+			/*时分秒插件里面的方法*/
+			showSecond : true,
+			timeFormat : 'hh:mm:ss',
+			stepHour : 1,
+			stepMinute : 1,
+			stepSecond : 1
+
+		});
+
+		//留言修改将框显示出来，将原来的留言隐藏隐藏起来
+		$('.words_edit_icon').click(function(event) {
+			event.preventDefault();
+			//找到隔壁的一列里面的某个元素，先向上找到最邻近的父亲，再向上找到最邻近的同辈元素
+			$(this).parents('td').prev().find('.words').toggle(1000);
+			$(this).parents('td').prev().find('.words_edit').toggle(1000);
+
+		});
+
+		//回复修改将框显示出来，将原来的回复隐藏隐藏起来
+		$('.reply_edit_icon').click(function(event) {
+			event.preventDefault();
+			//找到隔壁的一列里面的某个元素，先向上找到最邻近的父亲，再向上找到最邻近的同辈元素
+			$(this).parents('td').prev().find('.reply').toggle(1000);
+			$(this).parents('td').prev().find('.reply_edit').toggle(1000);
+
+		});
+
+	});
+</script>
+
+	
+</head>
+
+<body>
+	<div id="main-content" style="width: 1133px;">
+		<!-- Main Content Section with everything -->
+		<div class="clear"></div>
+		<!-- End .clear -->
+		<div class="content-box">
+			<!-- Start Content Box -->
+			<div class="content-box-header">
+				<h3>留言区 >> 留言列表</h3>
+				<div class="clear"></div>
+			</div>
+			<!-- End .content-box-header -->
+
+			<div class="content-box-content">
+				<div class="tab-content default-tab" id="tab1">
+					<!-- This is the target div. id must match the href of this div's tab -->
+					<script type="text/javascript">
+						function trover(o) {
+							o.style.color = '#8600FF';
+
+						}
+
+						function trout(o) {
+							o.style.color = '';
+
+						}
+					</script>
+
+					<table id="tb" style="width: 1093px;">
+
+						<thead>
+							<tr>
+								<th style="width: 50px">编号</th>
+								<th style="width: 800px">留言</th>
+								<th style="width: 80px">操作</th>
+							</tr>
+						</thead>
+
+						<tfoot>
+
+							<tr>
+								<td colspan="3" style="text-align: center"><{$page}></td>
+							</tr>
+						</tfoot>
+
+						<tbody>
+							<!-- <volist name="list" id="vo"> -->
+							<tr>
+								<td><b><{$i}></b></td>
+								<td>
+									<div class="words">
+                                        留言人：<{$vo.author}> &nbsp;&nbsp; 邮箱：<{$vo.email}> &nbsp;&nbsp; 手机：<{$vo.phone}> &nbsp;&nbsp;  地址：<{$vo.addr}> &nbsp;&nbsp; 留言时间：<{$vo.time|date="Y-m-d H:m:s",###}> &nbsp;&nbsp; <{$vo.ip}> &nbsp;&nbsp;  <br />
+										留言：<{$vo.content}>
+									</div>
+									
+									
+									<!--留言修改-->
+									<div class="words_edit"> <br />
+										<form action="__URL__/wordsEdit" method="post">
+											时间：
+											<input readonly="readonly" type="text" name="time" class="time" value="<{$vo.time|date='Y-m-d H:i:s',###}>" />
+											<br /> 
+											作者：
+											<input type="text" name="author" value="<{$vo.author}>" maxlength="64" />
+                                            <br />
+                                            邮箱：
+                                            <input type="text" name="email" value="<{$vo.email}>" maxlength="64"/>
+                                            <br />
+                                            手机：
+                                            <input type="text" name="phone" value="<{$vo.phone}>" maxlength="11" />
+                                            <br />
+                                            地址：
+                                            <input type="text" name="addr" value="<{$vo.addr}>" />
+                                            <br />
+                                            留言：
+											<textarea class="tarea" name="content"><{$vo.content}></textarea>
+											<input type="hidden" name="id" value="<{$vo.id}>" />
+											<input class="button" type="submit" name="sub" value="提交" />
+										</form>
+									</div> 
+									<!--end 留言修改-->
+									
+								</td>
+								<td>
+									<a class="words_edit_icon" href="#" title="修改留言"> 
+										<img src="__PUBLIC__/images/icons/pencil.png" alt="修改留言" />
+									</a>
+								 	<a onclick="if(!confirm('确定删除？')){return false;}" href="__URL__/wordsDelete/id/<{$vo.id}>" title="删除"> 
+								 		<img src="__PUBLIC__/images/icons/cross.png" alt="删除" />
+									</a>
+								</td>
+							</tr>
+						<!-- </volist> -->
+
+						</tbody>
+					</table>
+
+
+
+				</div>
+				<!-- End #tab1 -->
+
+
+			</div>
+			<!-- End #main-content -->
+
+		</div>
+	</div>
+	<include file="../Public/footer" />
+</body>
+
+
+</html>

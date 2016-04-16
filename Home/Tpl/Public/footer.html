@@ -1,0 +1,96 @@
+<!-- 底部 begin -->
+<div class="f_footer">
+    <!-- 友情链接 begin -->
+    <div class="flink">
+        <div class="wrap">
+            <strong>友情链接：</strong>
+            <volist name='link' id='l'>
+                <a href="{$l.link}" target='_blank' rel="nofollow">{$l.name}</a>
+            </volist>
+        </div>
+    </div>
+    <!-- 友情链接 end -->
+    <!-- 联系方式及版权 begin -->
+    <div class="cpr">
+        <div class="wrap">
+            <p>建材有限公司 版权所有 All Right Reserve ICP备案——申请中——号</p>
+            <p>地址：兴宁市</p>
+            <p>邮箱：123456@qq.com</p>
+            <p>电话：0753-1234568 手机：经理13788888888 </p>
+        </div>
+    </div>
+    <!-- 联系方式及版权 end -->
+</div>
+<!-- 底部 end -->
+<script src="__PUBLIC__/home/js/jquery.min.1.7.2.js"></script>
+<script src="__PUBLIC__/home/js/slide.js"></script>
+<script src="__PUBLIC__/home/js/marquee.js"></script>
+<script>
+    // 大轮播图
+    var slideCarousel1 = ue.slideCarousel({
+        target : '#j-slide .slidemain',
+        list : "#j-slide .slidemain ul",//滚动对象 一般为 ul
+        items : '#j-slide .slidemain ul li', //滚动的详细列表
+        itemActive : "active",
+
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+
+        thumbnails : "#j-slide .slidenav li",
+        trigger : "click",
+
+        autoplay : true,
+        loop : true,
+
+        mode : ue.slideCarousel.H   //V表示竖直方向滚动 H表示水平方向滚动
+    });
+    // 小图文轮播图
+    var slideCarousel2 = ue.slideCarousel({
+        target : '#j-slide1 .slidemain',
+        list : "#j-slide1 .slidemain ul",//滚动对象 一般为 ul
+        items : '#j-slide1 .slidemain ul li', //滚动的详细列表
+        itemActive : "active",
+
+        delay : 3000,//切换间隔时间
+        speed : 600,//切换速度
+
+        thumbnails : "#j-slide1 .slidenav li",
+        trigger : "click",
+
+        autoplay : true,
+        loop : true,
+
+        prev : "#j-slide1 .slidenav .prev",
+        next : "#j-slide1 .slidenav .next",
+
+        mode : ue.slideCarousel.H   //V表示竖直方向滚动 H表示水平方向滚动
+    });
+    // 跑马灯
+    var marqueeCarousel = ue.marqueeNew({
+        target : '#j-slide3 .slidelist',//滚动对象 一般为 ul
+        items : '#j-slide3 .slidelist li', //滚动的详细列表
+        speed : 1,//滚动速度，像素
+        movelength: 300,
+        direction : ue.marqueeNew.LEFT//滚动方向
+    });
+
+
+    // slidenav居中
+    var liNum = $(".w_slide1 .slidenav ul").children().length;
+    $(".w_slide1 .slidenav ul").css('width',16*liNum+8);
+
+    // 获取时间
+    window.onload = function(){
+        var myDate = new Date();
+        var year = myDate.getFullYear();
+        var month = myDate.getMonth()+1;
+        var date = myDate.getDate();
+        var week = ['日','一','二','三','四','五','六'];
+        var day = week[myDate.getDay()];
+//        document.getElementById("j-time").innerHTML = "<span>"+year+"-"+month+"-"+date+"星期"+day+"</span>"
+        $('#j-time').html("<span>"+year+"-"+month+"-"+date+"星期"+day+"</span>");
+    }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,11 @@
+@CHARSET "UTF-8";
+#upimg{
+	padding:30px 0 0 20px;
+}
+#upimg input.submit{
+	width:50px;
+	height:22px;
+    border:1px solid #ccc;
+    background:#fff;
+    cursor:pointer;
+}

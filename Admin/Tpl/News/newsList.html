@@ -1,0 +1,276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		<!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/blue.css" type="text/css" media="screen" />
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+		
+		<!-- Internet Explorer Fixes Stylesheet -->
+		
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="__PUBLIC__/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+		
+		<!--                       Javascripts                       -->
+  
+		<!-- jQuery -->
+		
+		
+		
+           
+			<script type="text/javascript" src="__PUBLIC__/scripts/jquery-1.9.1.js"></script>
+            <script type="text/javascript" src="__PUBLIC__/scripts/jquery.util.topic.js"></script>
+			<!--截取class为topic的长度-->
+			<script type="text/javascript" src="__PUBLIC__/scripts/topic.js"></script>
+			<script type="text/javascript">
+			$(function () {
+				
+				//一个汉字占一个字节
+				//招标公告的新闻长度截取
+				$(".topic").formatTopic({
+					length: 25,
+					fill: '.',
+					fillLength: 3
+				});
+				
+				
+				$('#newsType').on('change',function (){
+					var c_id = $('select[name="newsType"]').val();
+					self.location='__URL__/newsList?c_id='+c_id;
+
+				});
+
+				//悬停的行显示灰色
+				$("tr").hover(function (){
+					$(this).css('background','#F0F0F0');
+				},function(){
+					$(this).css('background','');
+				});
+
+	
+			});
+			</script>
+            
+</head>
+  
+	<body  >
+		
+
+		</div></div> <!-- End #sidebar -->
+		<div id="main-content" style="width:1122px;"> <!-- Main Content Section with everything -->
+			
+			
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>新闻模块　>>　已经审核新闻列表</h3>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+						
+					
+					
+
+	
+
+						<table id="tb" style="width:1075px;" >
+							
+							<thead>
+								<tr>
+								   <th >&nbsp;</th>
+								   <th>新闻编号</th>
+								   <th>
+										<select name="newsType" id="newsType">
+											<option value="0" >新闻类型</option>
+										<volist name="clist" id="vo">
+											<if condition="$vo[c_id] eq $c_id "> value1
+												<option value="<{$vo[c_id]}>" selected="selected">
+													
+													
+													<php> 
+														for($i=0;$i<$vo['count']*2;$i++){
+															echo "&nbsp;";
+														} 
+													 </php>
+													  ┗ <{$vo[name]}>
+												</option>
+											<else />
+												<option value="<{$vo[c_id]}>">
+													<php> 
+														for($i=0;$i<$vo['count']*2;$i++){
+															echo "&nbsp;";
+														} 
+													 </php>
+													  ┗ <{$vo[name]}>
+													  
+												</option>
+
+											</if>
+
+										</volist>
+										
+										</select>
+									</th>
+								   <th>新闻标题</th>
+								   <th>作者</th>
+								   <th>发布时间</th>
+                                   <th>
+										图片
+										<!-- <select name="img_val" id="img_val">
+											<option value="0" selected="selected">首页图片</option>
+											
+											<option value="1">有</option>
+											<option value="-1">无</option>
+										
+										
+									 </select> -->
+									</th>
+								   <th>
+									附件
+									<!-- <select name="attach_val" id="attach_val">
+										
+											<option value="0" selected="selected">附件</option>
+											<option value="2">有</option>
+											<option value="-1">无</option>
+										
+										
+										</select> -->
+								
+								   </th>
+                                   
+                                   <th>操作</th>
+                                   
+								
+										
+                                   
+								</tr>
+							</thead>
+						 
+							<tfoot>
+								<tr>
+									<td colspan="11" style="text-align:right"><{$page}></td>
+								</tr>
+								<td colspan="11" style="text-align:right">
+										<form action="__URL__/searchNews" method="post" id="searchNews">
+											<input type="text" name="searchText" class="text"/><input name="searchNews" type="submit" value="搜索" class="submit"/> 
+										</form>
+									
+								</td>
+								
+							</tfoot>
+						 
+							<tbody>
+                          
+								
+			
+                            <volist name="list" id="vo">
+                            
+								<tr>
+									<td>&nbsp;</td>
+                                    <td><{$i}></td>
+									<td><{$vo.name}></td>
+									<td class="topic"><{$vo.news_title}></td>
+									<td><{$vo.author}></td>
+                                    <td> <{$vo.date_time|date="Y-m-d H:i:s",###}>  </td>
+                                    
+									
+									
+                                    <td id="img" >
+									
+										<if condition="$vo[img] neq NULL ">
+											<img src ="__PUBLIC__/images/icons/yes.png" title="有" />
+										<else/>
+											<img src ="__PUBLIC__/images/icons/no.png" title="无" />
+										</if>
+									
+									</td>
+									
+
+									
+									<td id="attach">
+									
+										<if condition="$vo[attach] neq NULL ">
+											<img src ="__PUBLIC__/images/icons/yes.png" title="有" />
+										<else/>
+											<img src ="__PUBLIC__/images/icons/no.png" title="无" />
+										</if>
+
+									
+									</td>
+                                   
+									
+									<td>
+										<!-- Icons -->
+										 <!--<a href="__URL__/newsList/set_top/<{$vo.id}>" title="置顶"><img src="__PUBLIC__/images/icons/settop.png" alt="置顶" /></a>
+										  <a href="__URL__/newsList/up_id/<{$vo.id}>" title="up"><img src="__PUBLIC__/images/icons/up.png" alt="上移" /></a>
+										 <a href="__URL__/newsList/down_nid/<{$vo.id}>" title="down"><img src="__PUBLIC__/images/icons/down.png" alt="下移" /></a> -->
+										 <a href="__URL__/newsAlter/alter_id/<{$vo.id}>" title="修改"><img src="__PUBLIC__/images/icons/pencil.png" alt="修改" /></a>
+										 <a onclick="if(!confirm('确定删除？')){return false;}" href="__URL__/newsRemove/remove_id/<{$vo.id}>" title="删除"><img src="__PUBLIC__/images/icons/cross.png" alt="删除" /></a> 
+										
+									</td> 
+								</tr>
+								
+								
+                                </volist>
+                                
+                                
+                                
+                                
+							</tbody>
+							
+						</table>
+                     
+                        
+                        
+           
+					</div>	<!-- End #tab1 -->
+                    
+                    
+				</div> <!-- End .content-box-content -->
+				
+			</div> <!-- End .content-box -->
+			
+			
+			
+			
+		</div> <!-- End #main-content -->
+		
+	</div>
+	<include file="../Public/footer" /> 
+	</body>
+  
+
+
+</html>

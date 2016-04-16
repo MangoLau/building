@@ -1,0 +1,20 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>图片上传</title>
+<link rel="shortcut icon" href="__PUBLIC__/images/heart.ico"/>
+<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/upimg.css"/>
+</head>
+<body>
+
+<div id="upimg">
+    <form enctype="multipart/form-data" action="__APP__/Public/uping" method="post">
+    <input type="hidden" name="MAX_FILE_SIZE" value="1000000"/>
+            选择图片：<input type="file" name="userfile"/>
+    <input type="submit" class="submit" value="上传"/>
+    </form>
+</div>
+
+</body>
+</html>

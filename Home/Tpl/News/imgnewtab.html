@@ -1,0 +1,94 @@
+<include file="Public:head" />
+<include file="Public:header" />
+<!-- 内容 begin -->
+<div class="f_wrap">
+    <!-- 大轮播图 begin -->
+    <div class="w_slide" id="j-slide">
+        <div class="slidemain">
+            <ul class="clearfix">
+                <volist name="huo" id="v">
+                    <li>
+                        <a href="javascript:void(0);">
+                            <img src="__PUBLIC__/upload/news/{$v.name}" alt="{$v.title}" title="{$v.title}">
+                        </a>
+                    </li>
+                </volist>
+            </ul>
+        </div>
+        <div class="slidenav">
+            <ul>
+                <volist name="huo" id="v">
+                    <li class=""><a href="#">{$i}</a></li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    <!-- 大轮播图 end -->
+    <div class="f_row clearfix mt10">
+        <div class="f_aside">
+            <div class="m_box">
+                <div class="header clearfix">
+                    <h3>{$leftTop}</h3>
+                </div>
+                <div class="body">
+                    <ul class="m_list">
+                        <volist name="leftPaths" id="path" key="k">
+                            <if condition="$path['act'] eq 1">
+                                <li class="active"><a href="__APP__{$path.link}">{$path.name}</a><span>></span></li>
+                                <else/>
+                                <li><a href="__APP__{$path.link}">{$path.name}</a><span>></span></li>
+                            </if>
+                        </volist>
+                    </ul>
+                </div>
+            </div>
+            <div class="m_box fwzx">
+                <div class="header clearfix">
+                    <h3>服务中心</h3>
+                </div>
+                <div class="body">
+                    <a href="{:U('News/newtab', array('c_id'=>15))}" title="人才招聘" class="ilink"></a>
+                    <a href="{:U('Contact/contactus')}" title="联系我们" class="img_lxwm ilink mt10"></a>
+                </div>
+            </div>
+        </div>
+        <div class="f_section">
+            <div class="m_bar">
+                <div class="header clearfix">
+                    <p class="tit"></p>
+                    <div class="f_local">
+                        <div class="m_crumb">
+                            <span class="word">当前位置：</span>
+                            <volist name="paths" id="path">
+                                <if condition="$path['act'] eq 1">
+                                    <a href="__APP__{$path.link}" title="{$path.name}" class="active">{$path.name}</a>
+                                <else/>
+                                    <a href="__APP__{$path.link}" title="{$path.name}" class="">{$path.name}</a>
+                                </if>
+                            </volist>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <h1>{$new.news_title}</h1>
+                    <volist name="img" id="vo">
+                        <img src="__PUBLIC__/upload/news/{$vo.name}" alt="{$list.title}" style="margin:0 auto;display: block;width: 600px">
+                    </volist>
+                    {$new.content}
+                    <!-- 相邻文章 begin -->
+                    <div class="w_paging">
+                        <if condition="$up neq null">
+                            <a target="_self" href="{:U('News/imgnewtab',array('id'=>$up[0]['id']))}" title="{$up.0.news_title}">上一篇</a>
+                        </if>
+                        <if condition="$down neq null">
+                            <a target="_self" href="{:U('News/imgnewtab',array('id'=>$down[0]['id']))}" title="{$down.0.news_title}">下一篇</a>
+                        </if>
+                    </div>
+                    <!-- 相邻文章 end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 内容 end -->
+<include file='Public:footer'/>

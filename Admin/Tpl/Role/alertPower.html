@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		<!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/blue.css" type="text/css" media="screen" />
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+		
+		<!-- Internet Explorer Fixes Stylesheet -->
+		
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="__PUBLIC__/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+		
+		<!--                       Javascripts                       -->
+  
+		<!-- jQuery -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery-1.3.2.min.js"></script>
+		
+		<!-- jQuery Configuration -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/simpla.jquery.configuration.js"></script>
+		
+		<!-- Facebox jQuery Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/facebox.js"></script>
+		
+		<!-- jQuery WYSIWYG Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.wysiwyg.js"></script>
+		
+		<!-- jQuery Datepicker Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.datePicker.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.date.js"></script>
+		<!--[if IE]><script type="text/javascript" src="__PUBLIC__/scripts/jquery.bgiframe.js"></script><![endif]-->
+
+		
+		<!-- Internet Explorer .png-fix -->
+		
+		<!--[if IE 6]>
+			<script type="text/javascript" src="__PUBLIC__/scripts/DD_belatedPNG_0.0.7a.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+		
+	</head>
+  
+	<body>
+		
+
+		
+		<div id="main-content" > <!-- Main Content Section with everything -->
+			
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+                    
+                    
+                    <form action="__URL__/alertPower" method="post" >
+					<h3>修改角色资料</h3>
+                    <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;角色名：<input type="text" name="role_name" style="width:200px;margin-top:5px;"  value="<{$roleInfo[0][name]}>" />
+                   &nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;角色描述：<input type="text" name="role_remark" style="width:500px;margin-top:5px;"  value="<{$roleInfo[0][remark]}>" /></p>
+		
+<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+						
+				
+										
+				<script type="text/javascript">
+				<!--
+					function trover(o){
+						o.style.color= '#8600FF'; 	
+						
+						
+					}
+					
+					function trout(o){
+						o.style.color= ''; 	
+						
+						
+					}
+					
+				//-->
+				</script>
+
+
+						<table id="tb" style="width:1093px;">
+							
+							<thead>
+								<tr >
+								   
+								   <th>三级授权</th>
+							     
+								</tr>
+								
+							</thead>
+						 
+							<tfoot>
+								<tr>
+									<td colspan="2" style="text-align:right"><{$page}></td>
+								</tr>
+                                <!-- <if condition='$all neq 1'> -->
+                                <tr>
+									<td colspan="2" style="text-align:center"><input type="submit" value="保存" name="sub_alert" class="button" /></td>
+								</tr>
+                                	<td colspan="2" style="text-align:center"><input type="hidden" value="<{$roleInfo[0][id]}>" name="roleId" class="button" /></td>
+								</tr>
+								<!-- </if> -->
+							</tfoot>
+						 
+							<tbody>
+           
+                         <!--level1-->
+                            
+                            <volist name="level1" id="vo1" key="i" >
+                            
+								<tr onmouseover="trover(this)" onmouseout="trout(this)" >
+									<td><input type="checkbox" name="level1[]" value="<{$vo1.id}>"  <{$vo1.check}> />
+				<{$vo1.title}>
+                                    
+                                    </td>
+           
+								</tr>
+                                
+                                
+								   <!--level2-->
+								  <volist name="level2[$i-1]" id="vo2" key="j" >
+                				<tr onmouseover="trover(this)" onmouseout="trout(this)" >
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;┗&nbsp;&nbsp;&nbsp;<input type="checkbox" name="level2[]" value="<{$vo2.id}>"   <{$vo2.check}>/>
+				<{$vo2.title}>
+                
+                
+                
+                                <!--level3-->
+                                
+                                <volist name="level3[$i-1][$j-1]" id="vo3" key="k" >
+                                
+                				<tr onmouseover="trover(this)" onmouseout="trout(this)" >
+									<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;┗&nbsp;&nbsp;&nbsp;<input type="checkbox" name="level3[]" value="<{$vo3.id}>"  <{$vo3.check}>  />
+				<{$vo3.title}>
+                                    
+                                    </td>
+           
+								</tr>     
+                                
+                                 </volist>
+                                 <!--end level3-->
+                                 
+                                 
+                                  </td>
+           
+								</tr>     
+                                 </volist>
+                                
+                                <!--end level2-->
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                
+                                </volist>
+                             <!--end level1-->   
+                                
+                                
+                                
+							</tbody>
+							
+						</table>
+           
+					</div> <!-- End #tab1 -->
+                    
+                    </form>
+                    
+					
+					
+			
+		
+			
+		</div> <!-- End #main-content -->
+		
+	</div>
+	<include file="../Public/footer" /> 
+	</body>
+
+</html>

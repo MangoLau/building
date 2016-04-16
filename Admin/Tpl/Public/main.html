@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		<!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/blue.css" type="text/css" media="screen" />
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+		
+		<!-- Internet Explorer Fixes Stylesheet -->
+		
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="__PUBLIC__/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+		
+		<!--                       Javascripts                       -->
+  
+		<!-- jQuery -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery-1.3.2.min.js"></script>
+		
+		<!-- jQuery Configuration -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/simpla.jquery.configuration.js"></script>
+		
+		<!-- Facebox jQuery Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/facebox.js"></script>
+		
+		<!-- jQuery WYSIWYG Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.wysiwyg.js"></script>
+		
+		<!-- jQuery Datepicker Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.datePicker.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.date.js"></script>
+		<!--[if IE]><script type="text/javascript" src="__PUBLIC__/scripts/jquery.bgiframe.js"></script><![endif]-->
+
+		
+		<!-- Internet Explorer .png-fix -->
+		
+		<!--[if IE 6]>
+			<script type="text/javascript" src="__PUBLIC__/scripts/DD_belatedPNG_0.0.7a.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+		
+	</head>
+  
+	<body>
+		
+
+		
+		<div id="main-content" style="width:1122px;"> <!-- Main Content Section with everything -->
+			
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header"  >
+					
+					<h3 style="width:1122px;">消息列表</h3>
+					
+					
+					
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					
+						
+						
+                <script type="text/javascript">
+                <!--
+                    function trover(o) {
+                        o.style.color = '#8600FF';
+
+
+                    }
+
+                    function trout(o) {
+                        o.style.color = '';
+
+
+                    }
+	
+                //-->
+                </script>
+
+
+						<table style="width:1075px;">
+							
+							<thead>
+							
+								
+							</thead>
+						 
+							<tfoot>
+								<tr>
+									<td colspan="8" style="text-align:right"><{$page}></td>
+								</tr>
+                               
+                                <tr>
+                                	<td colspan="8" style="text-align:center"><input type="hidden" value="<{$userId}>" name="userId" class="button" /></td>
+								</tr>
+							</tfoot>
+						 
+							<tbody>
+							<!--
+                            <volist name="slist" key="k" id="vo">
+                                <tr >
+                                    <td>
+                                    <switch  name="category"  > 
+
+                                        <case value= "0" >您还有 <span style="color:red" ><{$vo[num]}></span> 处更改未审核！&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button" href="__APP__/StudentInfo/stuInfoEdit" >点击查看</a>
+                                         
+                                        </case> 
+                                        
+                                        <case value= "1" > 
+                                        <{$k}>、<{$vo[classtitle]}> 班 <span style="color:blue" ><{$vo[nickname]}></span>（学号<{$vo[username]}>） 做了 <span style="color:red"><{$vo[num]}></span> 处更改&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a class="button" href="__APP__/StudentInfo/checkProject?stu_id=<{$vo[stu_id]}>" >点击查看</a>
+                                         </case> 
+                                     </switch> 
+
+                                     <{$num}>
+                                   
+                                    
+                                    </td>
+                                </tr>
+                            </volist>-->
+                                
+                            
+								<tr >
+                                    <td>
+                                    
+										操作系统 : <{$info['操作系统']}>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										运行环境 : <{$info['运行环境']}>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										PHP运行方式 : <{$info['PHP运行方式']}>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										服务器时间 : <{$info['服务器时间']}>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										北京时间 : <{$info['北京时间']}>
+                                    </td>
+                                    
+                                </tr>
+								<tr>
+									<td>
+										thinkphp版本 : <{$Think.version}>
+                                    </td>
+                                    
+                                </tr>
+							
+                                
+                                
+							</tbody>
+							
+						</table>
+           
+			
+                    
+
+                    
+					
+					
+			</div>
+			<!-- End Notifications -->
+			
+			
+			
+		</div> <!-- End #main-content -->
+		<include file="../Public/footer" /> 
+		
+	</body>
+  
+
+
+</html>

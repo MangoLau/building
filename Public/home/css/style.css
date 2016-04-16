@@ -1,0 +1,636 @@
+@charset "utf-8";
+/* CSS reset */
+html{ 
+	background:#fff;
+	color:#000;
+	-webkit-text-size-adjust:100%;
+	-ms-text-size-adjust:100%;
+}
+/*内外边距通常让各个浏览器样式的表现位置不同*/
+body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,code,form,fieldset,legend,input,textarea,p,blockquote,th,td,hr,button,article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section{ padding: 0; margin: 0; }
+table { border-collapse: collapse; border-spacing: 0; }
+fieldset, img { border: 0; }
+/* 要注意表单元素并不继承父级 font 的问题 */
+body,button,input,select,textarea{ font:500 14px/1.8 "microsoft yahei";}
+input,select,img{ vertical-align:middle}
+input,select{ outline:none}
+input,select,textarea{ font-size:100%;}
+ul,ol{ list-style:none }
+h1, h2, h3, h4, h5, h6 { font-size: 100%; }
+address,cite,dfn,em,var{font-style:normal;}
+/* 去掉 firefox 下此元素的边框 */
+abbr,acronym{ border:0;font-variant:normal;}
+/* 去除默认边框 */
+fieldset,img{ border:0;}
+/* 一致的 del 样式 */
+del { text-decoration:line-through;}
+address,caption,cite,code,dfn,em,th,var { font-style:normal;font-weight:500;}
+/* ie6 7 8(q) bug 显示为行内表现 */
+iframe{ display:block;}
+/* 统一上标和下标 */
+sub, sup { font-size: 75%; line-height: 0; position: relative; vertical-align: baseline;}
+sup {top: -0.5em;}
+sub {bottom: -0.25em;}
+/*重排左对齐*/
+caption,th { text-align:left;}
+/* IE bug fixed: th 不继承 text-align*/
+th{ text-align:inherit; }
+/*清除浮动*/
+.clearfix:after{ content:""; height:0; visibility:hidden; display:block; clear:both;}
+.clearfix{ zoom:1;}
+.fl,.fr{display:inline;}
+.fl{ float:left }
+.fr{ float:right }
+/*默认不显示下划线*/
+ins,a{text-decoration:none;color: #000;}
+a:hover{cursor: pointer;color: #167cbf;}
+/*Correct block display not defined in IE6/7/8/9 & ff3,IE需要在js中createElement(tag)*/
+article,aside,details,figcaption,figure,footer,header,hgroup,nav,section,summary { display: block;}
+/* HTML5 媒体文件跟 img 保持一致 */
+audio,canvas,video { display: inline-block;*display: inline;*zoom: 1;}
+body{ background-color: #e6f0f7;font: 12px/1.4 "Tahoma","Tahoma"}
+em{color: #f00;}
+
+/*================== 框架  f_  ==================*/
+/*================== 模块  m_  ==================*/
+/*================== 交互  g_  ==================*/
+/*================== 组件  w_  ==================*/
+
+
+.f_wrap{
+	width: 1000px;
+	margin: 0 auto;
+}
+.wrap{
+	width: 1000px;
+	margin: 0 auto;
+}
+.mt10{
+	margin-top: 10px;
+}
+.f_col{
+	float: left;
+	overflow: hidden;
+}
+.f_row{
+	overflow: hidden;
+}
+/*顶部导航*/
+.f_top{
+	height: 27px;
+	width: 100%;
+	background-color: #3098d7;
+	border-bottom: 1px solid #4fa2d5;
+}
+.f_top .save{
+	float: right;
+}
+.f_top .save a{
+	color: #fff;
+	margin-left: 10px;
+}
+.f_top .time{
+	color: #fff;
+	float: left;
+}
+.f_top .time span{
+	color: #fff;
+}
+/*大标题*/
+.f_header{
+	width: 100%;
+	background: url(../imgs/html_bg.jpg) repeat-x;
+	background-position: 0 -27px;
+	border-bottom: 0.5px solid #4fa2d5;
+}
+/*导航条*/
+.f_nav{
+	width: 100%;
+	background: url(../imgs/html_bg.jpg) repeat-x;
+	background-position: 0 bottom;
+}
+.f_nav .navlist{
+	height: 46px;
+	overflow: hidden;
+	margin-right: 10px;
+}
+.f_nav .navlist li{
+	float: left;
+	margin-right: -1px;
+	border-right: 1px solid #4fa2d5;
+	transition: background-color 0.3s linear 0s;
+}
+.f_nav .navlist a{
+	float: left;
+	height: 43px;
+	padding: 0 27px;
+	white-space: nowrap;
+	line-height: 45px;
+	color: #fff;
+	text-decoration: none;
+	font-weight: 600;
+	font-size: 14px;
+}
+.f_nav .navlist .cur,.f_nav .navlist li:hover{
+	background-color: #fff;
+}
+.f_nav .navlist .cur a,.f_nav .navlist a:hover{
+	color: #167cbf;
+}
+/*轮播图 w_ */
+.w_slide{
+	width: 988px;
+	position: relative;
+	overflow: hidden;
+	padding: 6px;
+	background-color: #fff;
+}
+.w_slide .slidemain{
+	width: 988px;
+	height: 330px;
+	overflow: hidden;
+	position: relative;
+}
+.w_slide .slidemain ul{
+	height: 330px;
+}
+.w_slide .slidemain ul li{
+	float: left;
+	display: inline;
+}
+.w_slide .slidemain ul li img{
+	width: 988px;
+	height: 330px;
+}
+.w_slide .slidenav{
+	position: absolute;
+	right: 20px;
+	top: 300px;
+}
+.w_slide .slidenav li{
+	float: left;
+	margin-right: 10px;
+	background-color: #000;
+	opacity: 0.5;
+}
+.w_slide .slidenav a{
+	width: 20px;
+	height: 20px;
+	line-height: 20px;
+	text-align: center;
+	display: block;
+	color: #fff;
+	font-weight: 600;
+}
+.w_slide .slidenav .active{
+	background-color: #f60;
+	opacity: 1;
+}
+/*通用模块 m_box*/
+.m_box{
+	border: 10px solid #fff;
+	padding: 10px;
+	background-color: #fafafa;
+}
+.m_box .header{
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 8px;
+	margin-bottom: 8px;
+}
+.m_box .header h3{
+	float: left;
+	font-size: 16px;
+	font-weight: 600;
+	color: #666;
+	line-height: 18px;
+	margin-left: 10px;
+}
+.m_box .header .more{
+	float: right;
+	font-size: 12px;
+	color: #666;
+	line-height: 18px;
+}
+/*图文轮播 w_ */
+.w_slide1{
+	width: 345px;
+	position: relative;
+	overflow: hidden;
+}
+.w_slide1 .slidemain{
+	width: 345px;
+	position: relative;
+	overflow: hidden;
+	height: 302px;
+}
+.w_slide1 .slidemain ul{
+	height: 302px;
+}
+.w_slide1 .slidemain ul li{
+    width: 345px;
+	float: left;
+	display: inline;
+}
+.w_slide1 .slidemain ul img{
+	width: 345px;
+	height: 185px;
+}
+.w_slide1 .slidemain ul span{
+	display: block;
+	line-height: 2;
+}
+.w_slide1 .slidemain ul h4{
+	line-height: 2;
+	color: #000;
+	width: 345px;
+	height: 24px;
+	overflow: hidden;
+}
+.w_slide1 .slidemain ul p{
+	width: 345px;
+	line-height: 1.6;
+	height: 57px;
+	overflow: hidden;
+}
+.w_slide1 .slidenav{
+	position: relative;
+	height: 20px;
+	margin-top: 10px;
+}
+.w_slide1 .slidenav ul{
+	width: 90px;
+	margin: 0 auto;
+}
+.w_slide1 .slidenav ul li{
+	width: 8px;
+	height: 8px;
+	border-radius: 4px;
+	background-color: #ccc;
+	float: left;
+	margin-right: 8px;
+	cursor: pointer;
+}
+.w_slide1 .slidenav ul .active{
+	background-color: #000;
+}
+.w_slide1 .slidenav a{
+	position: absolute;
+	left: 104px;
+	top: -3px;
+	display: block;
+	width: 11px;
+	height: 15px;
+	background-image: url(../imgs/arrow.png);
+	background-size: 21px;
+	background-position: 0 0;
+}
+.w_slide1 .slidenav .next{
+	left: 213px;
+	background-position: 11px 0;
+}
+.m_link{
+	display: block;
+	width: 100%;
+	background-color: #555;
+	color: #fff;
+	text-align: center;
+	line-height: 3;
+}
+.m_link:hover{
+	background-color: #167cbf;
+	color: #fff;
+}
+/*跑马灯组件 w_ */
+.w_slide3{
+	width: 960px;
+	overflow: hidden;
+	zoom: 1;
+}
+.w_slide3 li{
+	float: left;
+	display: inline;
+	width: 146px;
+	height: 130px;
+	margin-right: 6px;
+}
+.w_slide3 li a{
+	text-align: center;
+	color: #000;
+}
+.w_slide3 li img{
+	width: 146px;
+	height: 105px;
+	vertical-align: -webkit-baseline-middle;
+}
+/*新闻列表（数据交互 g_ ）*/
+.g_txtlist li{
+	height: 19px;
+	margin-bottom: 6px;
+	overflow: hidden;
+}
+.g_txtlist .time{
+	float: right;
+}
+.g_txtlist .tit{
+	overflow: hidden;
+}
+/*各模块非通用属性*/
+/*新闻动态*/
+.xwdt{
+	width: 345px;
+	margin-right: 10px;
+	float: left;
+	overflow: hidden;
+}
+/*公司介绍*/
+.gsjs{
+	width: 200px;
+    height: 413px;
+	margin-right: 10px;
+	float: left;
+	overflow: hidden;
+}
+.gsjs .img{
+	width: 100%;
+}
+.gsjs .intr{
+	line-height: 1.8;
+	margin-top: 10px;
+}
+/*联系我们*/
+.lxwm {
+    width: 315px;
+    height: 190px;
+    overflow: hidden;
+}
+.lxwm .tit{
+	font-size: 16px;
+}
+.lxwm .txt{
+	line-height: 2;
+}
+.lxwm .body{
+	height: 179px;
+	overflow: hidden;
+}
+/*企业文化*/
+.qywh {
+    width: 315px;
+    height: 172px;
+    overflow: hidden;
+}
+.qywh .txt{
+	line-height: 1.6;
+	font-size: 12px;
+}
+/*行业动态*/
+.hydt{
+	width: 455px;
+	overflow: hidden;
+	float: left;
+	margin-right: 10px;
+}
+.hydt .body,.fwcn .body{
+	height: 200px;
+	overflow: hidden;
+}
+/*服务承诺*/
+.fwcn{
+	width: 455px;
+	overflow: hidden;
+	float: left;
+}
+.fwcn img{
+	width: 60%;
+	float: left;
+}
+.fwcn .txt{
+	width: 40%;
+	float: left;
+	line-height: 1.7;
+}
+
+/*footer*/
+.f_footer{
+	margin-top: 20px;
+	color: #fff;
+}
+.f_footer .flink{
+	background-color: #3691CA;
+	color: #fff;
+	padding: 10px 0;
+}
+.f_footer .flink a{
+	color: #fff;
+}
+.f_footer .cpr{
+	background-color: #0973B8;
+	padding: 10px 0;
+}
+
+/************子页面************/
+
+/*侧边栏*/
+.f_aside{
+	width: 235px;
+	height: 800px;
+	float: left;
+	padding-bottom: 4000px;
+	margin-bottom: -4000px;
+	background-color: #fff;
+	border-right: 1px solid #eee;
+}
+.m_list li{
+	position: relative;
+}
+.m_list a{
+	line-height: 36px;
+    padding: 0 10px;
+    display: block;
+    color: #6E6E6E;
+    background-color: #fafafa;
+    font-weight: 500;
+	transition: background-color 0.3s linear 0s;
+}
+.m_list a:hover,
+.m_list .active a{
+	background-color: #167cbf;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 4px;
+}
+.m_list span{
+	position: absolute;
+	right: 10px;
+	top: 10px;
+	color: #6e6e6e;
+	font-weight: 500;
+}
+.m_list .active span,
+.m_list a:hover+span{
+	color: #fff;
+}
+.fwzx .ilink{
+	display: block;
+	width: 195px;
+	height: 49px;
+	background: url(../imgs/aside.jpg) no-repeat;
+	background-position: 0 0;
+	background-size: 100%;
+}
+.fwzx .img_lxwm{
+	background-position: 0 -49px;
+}
+
+/*section部分*/
+.f_section{
+	width: 744px;
+	float: right;
+	padding: 10px 10px 4000px 10px;
+	margin-bottom: -4000px;
+	background-color: #fff;
+}
+.m_bar .header{
+	border-bottom: 1px solid #e1e1e1;
+    padding-bottom: 8px;
+    margin-bottom: 8px;
+}
+.m_bar .header .tit{
+	color: #f60;
+	float: left;
+	font-weight: 600;
+	font-size: 16px;
+	padding-left: 10px;
+	border-left: 8px solid #f60;
+}
+.m_bar .body{
+	padding: 10px;
+}
+
+.m_bar .body h1{
+    font-size: 22px;
+    text-align: center;
+    line-height: 36px;
+}
+
+/*面包屑导航*/
+.f_local{
+	float: right;
+}
+.m_crumb .word,
+.m_crumb a,
+.m_crumb .active{
+	font-family: 'microsoft yahei';
+}
+.m_crumb a{
+    margin-right: 6px;
+}
+.m_crumb a:hover{
+	text-decoration: underline;
+}
+.m_crumb .active{
+	color: #f60;
+}
+
+/*发送留言*/
+.g_send .header{
+	background-color: #ccc;
+	padding: 4px 0 4px 20px;
+	font-weight: 600;
+	font-size: 14px;
+}
+.g_send ul li{
+	padding: 5px 0;
+}
+.g_send label{
+	display: block;
+	float: left;
+	width: 100px;
+	line-height: 24px;
+	text-align: right;
+}
+.g_send .txt{
+	height: 20px;
+    padding: 1px 3px;
+    border: 1px solid #D0D0D0;
+    background: #F2F2F2;
+    color: #666;
+}
+.g_send .txtarea{
+	width: 450px;
+    height: 100px;
+    padding: 1px 3px;
+    border: 1px solid #D0D0D0;
+    background: #F2F2F2;
+    color: #666;
+}
+.g_send .btn_sub,
+.g_send .btn_res{
+	width: 78px;
+	height: 24px;
+	text-align: center;
+	border:none;
+	cursor: pointer;
+	background-color: #ddd;
+	border-radius: 5px;
+	margin-left: 20px;
+}
+.g_send .btn_sub{
+	margin-left: 100px;
+}
+.g_send .btn_sub:hover,
+.g_send .btn_res:hover{
+	background-color: #f60;
+	color: #fff;
+}
+/*图文列表*/
+.g_imglist{
+	margin-left: -20px;
+}
+.g_imglist li{
+	float: left;
+	width: 168px;
+	overflow: hidden;
+	margin-left: 18px;
+}
+.g_imglist li img{
+	width: 164px;
+	height: 120px;
+	overflow: hidden;
+	border: 2px solid #fff;
+}
+.g_imglist li a{
+	display: block;
+	text-align: center;
+	line-height: 3;
+}
+.g_imglist li a:hover img{
+	border: 2px solid #167cbf;
+}
+/*页码列表*/
+.w_paging{
+	padding: 15px 0 6px;
+	text-align: center;
+}   
+.w_paging a{
+	background: #494949;
+	display: inline-block;
+	font-size: 12px;
+	color: #fff;
+	border-radius: 3px;
+	padding: 3px 10px;
+	vertical-align: middle;
+	text-decoration: none;
+	font-family: "microsoft yahei";
+}
+.w_paging a:hover{
+ 	background: #f60;
+}
+.w_paging strong{
+	color: #fff;
+	background: #f60;
+	padding: 6px 10px;
+	vertical-align: middle;
+	border-radius: 3px;
+	font-size: 12px;
+}

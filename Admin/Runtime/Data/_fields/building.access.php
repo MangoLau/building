@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'id', 1 => 'role_id', 2 => 'node_id', 3 => 'level', 4 => 'module', '_autoinc' => true, '_pk' => 'id', '_type' => array ( 'id' => 'int(11)', 'role_id' => 'smallint(6) unsigned', 'node_id' => 'smallint(6) unsigned', 'level' => 'tinyint(1)', 'module' => 'varchar(50)', ), );?>

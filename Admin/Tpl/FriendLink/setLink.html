@@ -1,0 +1,212 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		<!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/blue.css" type="text/css" media="screen" />
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+		
+		<!-- Internet Explorer Fixes Stylesheet -->
+		
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="__PUBLIC__/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+		
+        <style type="text/css">
+        
+        
+        
+        </style>
+
+
+
+		<!--                       Javascripts                       -->
+  
+		<!-- jQuery -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery-1.3.2.min.js"></script>
+		
+		<!-- jQuery Configuration -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/simpla.jquery.configuration.js"></script>
+		
+		<!-- Facebox jQuery Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/facebox.js"></script>
+		
+		<!-- jQuery WYSIWYG Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.wysiwyg.js"></script>
+		
+		<!-- jQuery Datepicker Plugin -->
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.datePicker.js"></script>
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery.date.js"></script>
+		<!--[if IE]><script type="text/javascript" src="__PUBLIC__/scripts/jquery.bgiframe.js"></script><![endif]-->
+
+		
+		<!-- Internet Explorer .png-fix -->
+		
+		<!--[if IE 6]>
+			<script type="text/javascript" src="__PUBLIC__/scripts/DD_belatedPNG_0.0.7a.js"></script>
+			<script type="text/javascript">
+				DD_belatedPNG.fix('.png_bg, img, li');
+			</script>
+		<![endif]-->
+		
+	</head>
+  
+	<body>
+		
+
+		
+		<div id="main-content" > <!-- Main Content Section with everything -->
+			
+	
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>友情链接　>>　链接设置</h3>
+					
+					
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+					
+						
+                        <script type="text/javascript">
+                        <!--
+	                        function trover(o){
+		                        o.style.color= '#8600FF'; 	
+		
+		
+	                        }
+ 	
+	                        function trout(o){
+		                        o.style.color= ''; 	
+		
+		
+	                        }
+	
+	                        /*function newsClassDel(del){
+		                        var c_id = document.getElementById("");
+		                        alert(c_id);
+		                        var url="__URL__/newsClassDelete/";
+		                        form2.action = url;
+		                        form2.submit();
+	                        }*/
+	
+                        //-->
+                        </script>
+
+
+						<table id="tb" style="width:1093px;">
+							
+							<thead>
+								<tr >
+								  
+                                   <th style="text-align:center">添加友情链接</th>
+								</tr>
+								
+							</thead>
+						 
+							<tfoot>
+								
+							</tfoot>
+						 
+							<tbody>
+           
+                         
+                            
+                           
+                            <form action="__URL__/addLink" method="post" >
+								<tr onmouseover="trover(this)" onmouseout="trout(this)" >
+									<td style="text-align:center" >
+                                    
+                                
+	
+                                    名称：<input type="text" name="name" value="" style="width:250px;"/>
+                                    &nbsp;&nbsp;&nbsp;
+                                    网址：<input type="text" name="link" value="" style="width:250px;"/>
+                                    &nbsp;&nbsp;&nbsp;
+                                    <input type="submit" name="add" class="button" value=" 添加 "/>
+
+                              
+
+                                    </td>
+                                   
+                            
+								</tr>
+				            </form>
+								
+						<volist name="f_link" id="vo" >	
+						
+						<form action="__URL__/updateLink" method="post" >
+							<input type="hidden" name="id" value="<{$vo[id]}>" />
+                           <tr onmouseover="trover(this)" onmouseout="trout(this)" >
+                             <td style="text-align:center;">
+  <!--
+			                <php>
+				                for($i=0;$i<$vo['count']*4;$i++){
+					                echo "&nbsp;";
+				                }
+			                </php>
+			                ┗&nbsp;&nbsp;-->
+                            名称：<input type="text" name="name" value="<{$vo.name}>" style="width:250px;"/>
+                                    &nbsp;&nbsp;&nbsp;
+                            网址：<input type="text" name="link" value="<{$vo.link}>" style="width:250px;"/>
+                            &nbsp;&nbsp;&nbsp;
+                             
+
+		                    <input type="submit"  class="button" name="update" value="更新"  />
+		                    <a href="__URL__/delLink/id/<{$vo[id]}>"  style="width:40px;text-align:center" class="button"> 删除</a>
+
+                            </td>
+                          </tr>   
+                        </form>   
+                        </volist>                        
+                                
+                        
+                                
+							</tbody>
+							
+						</table>
+           
+					</div> <!-- End #tab1 -->
+                    
+          
+            
+			
+	    	</div> <!-- End #main-content -->
+		
+	     
+			<include file="../Public/footer" /> 
+      </body>
+
+</html>

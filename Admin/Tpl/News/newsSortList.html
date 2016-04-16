@@ -1,0 +1,196 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		<!-- Colour Schemes
+	  
+		Default colour scheme is green. Uncomment prefered stylesheet to use it.
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/blue.css" type="text/css" media="screen" />
+		
+		<link rel="stylesheet" href="__PUBLIC__/css/red.css" type="text/css" media="screen" />  
+	 
+		-->
+		
+		<!-- Internet Explorer Fixes Stylesheet -->
+		
+		<!--[if lte IE 7]>
+			<link rel="stylesheet" href="__PUBLIC__/css/ie.css" type="text/css" media="screen" />
+		<![endif]-->
+		
+		<!--                       Javascripts                       -->
+  
+		
+		
+	</head>
+  
+	<body>
+		
+
+		
+		<div id="main-content" style="width:1133px;"> <!-- Main Content Section with everything -->
+			
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>新闻模块　>>　新闻分类列表</h3>
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+						
+					
+						
+<script type="text/javascript">
+<!--
+	function trover(o){
+		o.style.color= '#8600FF'; 	
+		
+		
+	}
+ 	
+	function trout(o){
+		o.style.color= ''; 	
+		
+		
+	}
+	
+	/*function newsClassDel(del){
+		var c_id = document.getElementById("");
+		alert(c_id);
+		var url="__URL__/newsClassDelete/";
+		form2.action = url;
+		form2.submit();
+	}*/
+	
+//-->
+</script>
+
+
+						<table id="tb" style="width:1093px;">
+							
+							<thead>
+								<tr >
+								  
+                                   <th style="text-align:center">添加新闻分类</th>
+								</tr>
+								
+							</thead>
+						 
+							<tfoot>
+								<tr>
+									<td colspan="1" style="text-align:right"></td>
+								</tr>
+                                <!-- <tr>
+									<td colspan="1" style="text-align:center"><input type="submit" value="保存" name="subRole" class="button" /></td>
+								</tr> -->
+								<tr>
+                                	<td colspan="1" style="text-align:center"><input type="hidden" value="<{$userId}>" name="userId" class="button" /></td>
+								</tr>
+							</tfoot>
+						 
+							<tbody>
+           
+                         
+                            
+                           
+                            
+								<tr onmouseover="trover(this)" onmouseout="trout(this)" >
+									<td style="text-align:center" >
+                                    
+                                    
+                                    
+                                   
+									<form action="__URL__/newsClassAdd" method="post" >
+											
+										<select name="pid">
+										<option value="0">添加大类</option>
+										<volist name="alist" id="vo" >
+
+										<option value="<{$vo[c_id]}>" >
+												<php>
+													for($i=0;$i<$vo['count']*4;$i++){
+														echo "&nbsp;";
+													}
+												</php>
+												┗&nbsp;&nbsp;<{$vo[name]}></option>
+											</volist>
+										</select>
+										&nbsp;&nbsp;&nbsp;
+										<input type="text" name="name" value="" />
+									&nbsp;&nbsp;&nbsp;
+										<input type="submit" name="add_class" class="button" value=" 添加分类 "/>
+
+									</form>
+
+                                    </td>
+                                   
+                            
+								</tr>
+				
+								
+						<volist name="alist" id="vo" >	
+						
+						<form action="__URL__/newsClassUpdate" method="post" >
+							<input type="hidden" name="c_id" value="<{$vo[c_id]}>" />
+                           <tr onmouseover="trover(this)" onmouseout="trout(this)">
+						 <td>
+  
+									<php>
+										for($i=0;$i<$vo['count']*4;$i++){
+											echo "&nbsp;";
+										}
+									</php>
+									┗&nbsp;&nbsp;<input type="text" name="name" value="<{$vo[name]}>" />
+
+						  &nbsp;&nbsp;
+
+								<input type="submit"  class="button"  value="更新" style="margin-right:10px;" />
+								<a href="__URL__/newsClassDelete/c_id/<{$vo[c_id]}>"  onclick="if(!confirm('确定要删除？')){return false}"style="width:40px;text-align:center" class="button"> 删除</a>
+
+						  </td>
+						  </tr>   
+			 </form>   
+			 </volist>                        
+                                
+                        
+                                
+							</tbody>
+							
+						</table>
+           
+					</div> <!-- End #tab1 -->
+                   
+			
+			
+		</div> <!-- End #main-content -->
+		
+	</div>
+	<include file="../Public/footer" /> 
+	</body>
+
+</html>

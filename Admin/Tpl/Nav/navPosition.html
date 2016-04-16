@@ -1,0 +1,165 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		
+	<link href="__PUBLIC__/jquery-ui-1.10.2.custom/css/south-street/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+	<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
+	<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
+
+	<style type="text/css">
+	body
+	{
+	    background:#F0F0F0;        
+	    }
+	#content
+	{
+	    text-align:center;
+		width:1000px;
+		margin:0 auto;
+		margin-top:40px;
+	    
+	    }
+	#bottom
+	{
+		
+	    text-align:left;
+		width:200px;
+		margin:0 auto;
+		padding-top:20px;
+		
+	    
+	    }
+	#sortable{
+		width:1000px;
+		height:25px;
+	}
+	#sortable li  
+	{
+	    /*margin: 3px 3px 3px 0; 
+	    padding: 1px; */
+	    float: left; 
+	    width: 108px; 
+	    height: 25px; 
+	    font-size: 20px; 
+	    line-height:25px;
+	    text-align:center;
+		list-style-type:none;
+
+	    }
+	/*
+	#sortable  
+	{
+	    list-style-type: none; 
+	    margin: 0; 
+	    padding: 0; 
+	    width: 1080px;
+	    
+	    
+	    margin:0 auto;
+	    position:relative;
+	    top:100px;
+	    
+	
+	    }
+	#sortable li  
+	{
+	    margin: 3px 3px 3px 0; 
+	    padding: 1px; 
+	    float: left; 
+	    width: 108px; 
+	    height: 70px; 
+	    font-size: 20px; 
+	    line-height:70px;
+	    text-align:center;
+	    }
+	#bottom
+	{
+	    margin:0 auto;
+	    position:relative;
+	    width: 1080px;
+	    
+	    top:200px;
+	    text-align:center;
+	    clear:both;
+	    }
+	botton
+	{
+	    margin:0 auto;
+	    position:absolute;
+	    top:200px;
+	    display:inline;
+	    
+	    }*/
+	</style>
+	
+
+	<script type="text/javascript">
+	    $(function () {
+            //按钮样式
+	        $("button").button();
+            //开启排序
+	        $("#sortable").sortable();
+            //关闭排序
+	        $("#sortable").sortable("disable");
+
+            //点击修改的时候，开启排序，改变边框样式
+	        $("#edit").click(function (event) {
+
+	            $("#sortable").sortable("enable");
+	            $("#sortable").sortable({
+
+	                delay: 1    //修复潜在链接点击问题
+	                
+	            }).find("li").css("border", "2px solid blue");
+	            $("#sortable").disableSelection();
+	        });
+
+	        //点击修改的时候，关闭排序，改变边框样式，然后异步传到php页面进行数据库更新
+	        $("#ensure").click(function (event) {
+
+	            $("#sortable").sortable("disable");
+
+	            $("#sortable").find("li").css("border", "none");
+	            var as = $("#sortable").sortable("serialize");
+	            //alert(as);
+	            $.post("__URL__/ajaxSetPosition", as, function (data, status) {
+	                alert(data);
+	            })
+
+	        });
+
+
+	    });
+	</script>
+</head>
+<body>
+<div id="content">
+    <!-- <ul id="sortable">
+        <volist name="nav" id="vo">
+	        <li class="ui-state-default" id="sort_<{$vo.c_id}>"><{$vo.name}></li>
+        </volist>
+	    	
+    </ul> -->
+    <ul id="sortable">
+		<volist name="nav" id="vo">
+			<li class="ui-state-default" id="sort_<{$vo.id}>"><{$vo.name}></li>
+		</volist>
+	</ul>
+    
+</div>
+<div id="bottom">
+		<button id="edit" ><span>修改</span></button>
+	    <button id="ensure"><span>确定</span></button>
+	</div>
+
+</body>
+  
+
+
+</html>

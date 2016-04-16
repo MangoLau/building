@@ -1,0 +1,85 @@
+/* CSS Document */
+*{
+	padding:0px;
+	margin:0 auto;
+	}
+body{
+	font-size:12px;
+	color:#333;
+	
+}
+#header{
+	width:980px;
+	height:250px;
+	
+	}
+#nav{
+	width:980px;
+	height:40px;
+	 
+	 
+	}
+#nav ul{
+	 text-align:center;
+	 height:35px;
+	 margin-left:48px;
+	 background:white;
+	 
+	}
+#nav li{
+	text-align:center;
+	list-style-type:none;
+	float:left;
+	width:120px;
+	height:35px;
+	line-height:35px;
+	font-size:14px;
+	font-weight:bold;
+	background:white url(../images/navbg.jpg);
+	 
+	}
+#nav li.ll {
+	width:23px;
+	height:35px;
+	}
+	
+#nav li.lr {
+	width:23px;
+	height:35px;
+	}
+#nav li a{
+	 
+	color:white;
+	text-decoration:none;
+	}
+#nav li a:hover{
+	text-decoration:underline;
+	 
+	 
+	}
+#content{
+	width:980px;
+	 
+	 
+	}
+
+#footer{
+	width:980px;
+	height:40px;
+	background:white url(../images/footer.jpg) no-repeat 50% ;
+	padding-top:10px;
+	clear:both;
+	}
+ 
+#footer ul{
+ 
+}
+#footer ul li{
+	list-style-type:none;
+	text-align:center;
+	 
+	height:18px;
+	line-height:18px;
+	font-size:12px;
+	 
+}

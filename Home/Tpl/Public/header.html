@@ -1,0 +1,37 @@
+<!-- 顶部 begin -->
+<div class="f_topbar">
+    <!-- 顶部时间栏 begin -->
+    <div class="f_top">
+        <div class="wrap">
+            <!--<div class="save">
+                <a>设为首页</a>
+                <a>加入收藏</a>
+            </div>-->
+            <div class="time"><span id="j-time">time</span>,欢迎光临兴宁市格伦建筑工程材料有限公司</div>
+        </div>
+    </div>
+    <!-- 顶部时间栏 end -->
+    <!-- 标题 begin -->
+    <div class="f_header">
+        <div class="wrap">
+            <img src="__PUBLIC__{$logo.link}" alt="">
+        </div>
+    </div>
+    <!-- 标题 end -->
+    <!-- 导航条 begin -->
+    <div class="f_nav">
+        <div class="wrap">
+            <ul class="navlist">
+                <volist name='nav' id='vo'>
+                    <if condition="$vo.act eq 1">
+                        <li class="cur"><a href="__APP__{$vo.link}" title="{$vo.name}">{$vo.name}</a></li>
+                        <else />
+                        <li><a href="__APP__{$vo.link}" title="{$vo.name}">{$vo.name}</a></li>
+                    </if>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    <!-- 导航条 end -->
+</div>
+<!-- 顶部 end -->

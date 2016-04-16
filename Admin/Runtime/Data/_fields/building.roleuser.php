@@ -1,0 +1,1 @@
+<?php	return array ( 0 => 'role_id', 1 => 'user_id', '_autoinc' => false, '_pk' => 'user_id', '_type' => array ( 'role_id' => 'int(10) unsigned', 'user_id' => 'int(11)', ), );?>

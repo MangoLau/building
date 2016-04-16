@@ -1,0 +1,152 @@
+<include file='Public:head'/>
+<include file='Public:header'/>
+	<!-- 内容 begin -->
+	<div class="f_wrap">
+		<!-- 大轮播图 begin -->
+		<div class="w_slide" id="j-slide">
+			<div class="slidemain">
+				<ul class="clearfix">
+                    <volist name="huo" id="v">
+                        <li><a href="javascript:void(0);"><img src="__PUBLIC__/upload/news/{$v.name}" alt="{$v.title}" title="{$v.title}"></a></li>
+                    </volist>
+				</ul>
+			</div>
+			<div class="slidenav">
+				<ul>
+                    <volist name="huo" id="v">
+                        <li class=""><a href="#">{$i}</a></li>
+                    </volist>
+				</ul>
+			</div>
+		</div>
+		<!-- 大轮播图 end -->
+		<div class="f_row mt10 clearfix">
+			<!-- 新闻动态 小图文轮播图 begin -->
+			<div class="m_box xwdt">
+				<div class="header clearfix">
+					<h3>新闻动态</h3>
+					<a href="{:U('News/newlist',array('c_id'=>10))}" class="more">更多+</a>
+				</div>
+				<div class="body">
+					<div class="w_slide1" id="j-slide1">
+						<div class="slidemain">
+							<ul class="clearfix">
+                                <volist name="newslist" id="nl">
+                                    <li>
+                                        <a href="javascript:void(0);" title="{$nl.news_title}"><img src="__PUBLIC__/upload/news/{$nl.name}" alt="{$nl.news_title}"></a>
+                                        <span>{:date('Y-m-d',$nl['date_time'])}</span>
+                                        <a href="{:U('News/newtab',array('id'=>$nl['id']))}" title="{$nl.news_title}"><h4>{$nl.news_title}</h4></a>
+                                        {$nl.content}
+                                    </li>
+                                </volist>
+							</ul>
+						</div>
+						<div class="slidenav">
+							<a href="#" class="prev"></a>
+							<a href="#" class="next"></a>
+							<ul class="clearfix">
+                                <volist name="newslist" id="nl">
+                                    <li class=""></li>
+                                </volist>
+							</ul>
+						</div>
+					</div>
+				</div>
+				<div class="footer">
+					<a href="{:U('News/newlist',array('c_id'=>10))}" class="m_link mt10">查看所有</a>
+				</div>
+			</div>
+			<!-- 新闻动态 小图文轮播图 end -->
+			<!-- 公司介绍 begin -->
+			<div class="m_box gsjs">
+				<div class="header clearfix">
+					<h3>公司介绍</h3>
+					<a href="{:U('News/newtab',array('id'=>$introduce['id']))}" class="more">更多+</a>
+				</div>
+				<div class="body">
+					<img src="__PUBLIC__/upload/news/{$introduce.img.name}" alt="" class="img">
+					<div class="intr">{$introduce.content}</div>
+				</div>
+			</div>
+			<!-- 公司介绍 end -->
+			<div class="f_col">
+				<!-- 联系我们 begin -->
+				<div class="m_box lxwm">
+					<div class="header clearfix">
+						<h3>联系我们</h3>
+						<a href="{:U('Contact/contactus')}" class="more">更多+</a>
+					</div>
+					<div class="body">
+						<h3 class="tit">{$us.news_title}</h3>
+						{$us.content}
+					</div>
+				</div>
+				<!-- 联系我们 end -->
+				<!-- 企业文化 begin -->
+				<div class="m_box qywh mt10">
+					<div class="header clearfix">
+						<h3>企业文化</h3>
+						<a href="{:U('News/newtab',array('id'=>$culture['id']))}" class="more">更多+</a>
+					</div>
+					<div class="body">
+						{$culture.content}
+					</div>
+				</div>
+				<!-- 企业文化 end -->
+			</div>
+		</div>
+		<!-- 跑马灯 工程案例 begin -->
+		<div class="m_box mt10">
+			<div class="header clearfix">
+				<h3>工程案例</h3>
+				<a href="{:U('News/imgnewlist',array('c_id'=>8))}" class="more">更多+</a>
+			</div>
+			<div class="body">
+				<div class="w_slide3" id="j-slide3">
+					<ul class="slidelist">
+                        <volist name="projects" id="project">
+                            <li><a href="{:U('News/imgnewtab', array('id'=>$project['id']))}" title="{$project.news_title}">
+                                <img src="__PUBLIC__/upload/news/{$project.name}" alt="">{$project.news_title}</a>
+                            </li>
+                        </volist>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<!-- 跑马灯 工程案例 end -->
+
+		<div class="f_row clearfix mt10">
+			<!-- 行业动态 begin -->
+			<div class="m_box hydt">
+				<div class="header clearfix">
+					<h3>行业动态</h3>
+					<a href="{:U('News/newlist',array('c_id'=>11))}" class="more">更多+</a>
+				</div>
+				<div class="body">
+					<ul class="g_txtlist">
+                        <volist name="industry" id="vi">
+                            <li>
+                                <span class="time">{:date('Y-m-d',$vi['date_time'])}</span>
+                                <a href="{:U('News/newtab',array('id'=>$vi['id']))}" title="{$vi.news_title}" class="tit">{$vi.news_title}</a>
+                            </li>
+                        </volist>
+					</ul>
+				</div>
+			</div>
+			<!-- 行业动态 end -->
+			<!-- 服务承诺 begin -->
+			<div class="m_box fwcn">
+				<div class="header clearfix">
+					<h3>服务承诺</h3>
+					<a href="{:U('News/newtab',array('id'=>$promise['id']))}" title="{$promise.news_title)}" class="more">更多+</a>
+				</div>
+				<div class="body clearfix">
+					<img src="__PUBLIC__/home/imgs/fwcn.jpg" alt="{$promise.news_title)}">
+					{$promise.content}
+				</div>
+			</div>
+			<!-- 服务承诺 end -->
+		</div>
+	</div>
+	<!-- 内容 end -->
+<include file='Public:footer'/>

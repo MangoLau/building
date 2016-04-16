@@ -1,0 +1,381 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+ <head>
+		
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		
+		<title>后台管理主页</title>
+		
+		<!--                       CSS                       -->
+	  
+		<!-- Reset Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/reset.css" type="text/css" media="screen" />
+	  
+		<!-- Main Stylesheet -->
+		<link rel="stylesheet" href="__PUBLIC__/css/style.css" type="text/css" media="screen" />
+		
+		<!-- Invalid Stylesheet. This makes stuff look pretty. Remove it if you want the CSS completely valid -->
+		<link rel="stylesheet" href="__PUBLIC__/css/invalid.css" type="text/css" media="screen" />	
+		
+		
+		<!-- jQuery -->
+		<link href="__PUBLIC__/jquery-ui-1.10.2.custom/css/south-street/jquery-ui-1.10.2.custom.css" rel="stylesheet">
+		<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-1.9.1.js"></script>
+		<script src="__PUBLIC__/jquery-ui-1.10.2.custom/js/jquery-ui-1.10.2.custom.js"></script>
+			
+		<!--精确到时分秒的时间控件,要配合上面的使用-->
+		<link type="text/css" href="__PUBLIC__/css/jquery-ui-timepicker-addon.css" rel="stylesheet" /> 
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery-ui-timepicker-addon.js"></script> 
+		<script type="text/javascript" src="__PUBLIC__/scripts/jquery-ui-timepicker-zh-CN.js"></script> 
+		
+		
+		<!--异步上传文件插件-->
+		<script type="text/javascript" src="__PUBLIC__/scripts/ajaxfileupload.js"></script> 
+
+
+		<style type="text/css">
+			
+
+			tr{
+				border-bottom:1px dotted green;
+		
+			}
+
+			tfoot tr{
+				border:0px;
+			}
+			
+			input{
+				margin:5px;
+			}
+			
+			.attach_title, .img_title{
+				color:blue;
+			}
+			
+		</style>
+		
+		<script type="text/javascript">
+			$(function(){
+				//悬停的行显示灰色
+				$('tr').hover(function (){
+					$(this).css('background','#F0F0F0');
+				},function(){
+					$(this).css('background','');
+				});
+			
+				
+				/*异步获取服务器时间*/
+				$.get("__APP__/Public/ajaxTime", function (data, status) {
+				 $( ".audit_time" ).val(data);
+				},"json");		//返回的是json数据一定要指定返回的类型
+				
+				//jquer能够显示时分秒的时间插件
+				$( ".date_time" ).datetimepicker({
+					/*jquery原生的datepicker的方法*/
+					showOn: "button",
+					buttonImage: "__PUBLIC__/images/icons/date.png",
+					buttonImageOnly: true,
+					showSecond: true,
+					buttonText:'选择日期',  
+					dateFormat:'yy-mm-dd',
+
+					/*时分秒插件里面的方法*/
+					showSecond: true, 
+					timeFormat: 'hh:mm:ss', 
+					stepHour: 1, 
+					stepMinute: 1, 
+					stepSecond: 1 
+
+				});
+				
+				//动态删除行
+				$('table').delegate('.delete_file','click', function (event) {
+					if(confirm('确定删除吗？')){
+						$(this).parent('td').parent('tr').remove();
+					}
+					
+				});
+				
+				//鼠标经过变手形
+				$('table').delegate('.delete_file','mouseover', function (event) {
+					$(this).css('cursor','pointer');
+				});
+				$('table').delegate('.delete_file','mouseout', function (event) {
+					$(this).css('cursor','default');
+				});
+				
+				//异步上传图片
+				function ajaxImgUp(o){
+					
+					
+					$(o).hide();
+					var loading = $("<span><img class='loading' src='__PUBLIC__/images/icons/loading.gif' /></span>").appendTo($(o).parent('td'));
+					
+					$.ajaxFileUpload({
+				
+						    url:'__URL__/ajaxImgUp', //你处理上传文件的服务端
+                            secureuri:false,
+                            fileElementId:'img',
+                            dataType: 'json',
+							//data:{name:'logan', id:'id'},//通过post的方式以$_POST[**]来取值
+                            success: function (data){
+							
+								loading.replaceWith("<span style='color:blue'>"+data.name+"　<span style='color:red'>(" + data.mes+")</span></span><input type='hidden' name='img_title[]' value='"+data.name+"' /><input type='hidden' name='img_name[]' value='"+data.savename+"' />　<img height=200 width=300 src='__PUBLIC__/upload/news/b_"+data.savename+"'/>");
+							
+                            }
+					});
+
+					return false;
+
+                    
+                 } 
+
+				//添加图片
+				$('.add_img').click(function (event){
+					//动态创建行
+					var s="<tr><td><img class='delete_file' title='删除' src='__PUBLIC__/images/icons/delete_file.png' />　<input type='file' size='50' name='img' id='img' /></td></tr>";
+					
+					$(this).parent('td').parent('tr').after(s);
+					
+				}).css('cursor','pointer');
+				
+				//添加图片的绑定函数
+				$('table').delegate('#img','change', function () {
+					ajaxImgUp(this)
+					
+				});
+				
+				//附件上传
+				function ajaxAttachUp(o){
+					
+					$(o).hide();
+					var loading = $("<span><img class='loading' src='__PUBLIC__/images/icons/loading.gif' /></span>").appendTo($(o).parent('td'));
+					
+					$.ajaxFileUpload({
+				
+						    url:'__URL__/ajaxAttachUp', //你处理上传文件的服务端
+                            secureuri:false,
+                            fileElementId:'attach',
+                            dataType: 'json',
+							//data:{name:'logan', id:'id'},//通过post的方式以$_POST[**]来取值
+                            success: function (data){
+												
+								loading.replaceWith("<span style='color:blue'>"+data.name+"　<span style='color:red'>(" + data.mes+")</span></span><input type='hidden' name='attach_title[]' value='"+data.name+"' /><input type='hidden' name='attach_name[]' value='"+data.savename+"' />");				
+                            }
+					});
+				
+				}
+
+				//添加附件
+				$('.add_file').click(function (event){
+					//动态创建行
+					var s="<tr><td><img class='delete_file' title='删除' src='__PUBLIC__/images/icons/delete_file.png' />　<input type='file' size='50' name='attach' id='attach' /></td></tr>";
+					
+					$(this).parent('td').parent('tr').after(s);
+					
+				}).css('cursor','pointer');
+				
+				//添加附件的绑定函数
+				$('table').delegate('#attach','change', function () {
+					ajaxAttachUp(this);
+					
+				});
+
+			
+				
+
+				
+				
+				
+
+			});
+		
+		</script>
+
+		
+	</head>
+  
+	<body>
+		
+
+		
+		<div id="main-content" style="width:1133px;"> <!-- Main Content Section with everything -->
+			
+		
+			
+			<div class="clear"></div> <!-- End .clear -->
+			
+			<div class="content-box"><!-- Start Content Box -->
+				
+				<div class="content-box-header">
+					
+					<h3>新闻模块　>>　已审核新闻修改</h3>
+					
+					
+					
+					
+					<div class="clear"></div>
+					
+				</div> <!-- End .content-box-header -->
+				
+				<div class="content-box-content">
+					
+					<div class="tab-content default-tab" id="tab1"> <!-- This is the target div. id must match the href of this div's tab -->
+						
+					  
+						
+			<script type="text/javascript">
+			<!--
+				function trover(o){
+					o.style.color= '#8600FF'; 	
+					
+					
+				}
+				
+				function trout(o){
+					o.style.color= ''; 	
+					
+					
+				}
+				
+			//-->
+			</script>
+
+			
+		 <form action="__URL__/newsAlter" method="post" enctype="multipart/form-data" id="myForm">   
+
+						<table id="tb" style="width:1093px;">
+							
+							<thead>
+								<tr >
+								  
+                                   <th style="text-align:center">修改新闻</th>
+								</tr>
+							</thead>
+						 
+							<tfoot>
+								<tr>
+									<td colspan="1" style="text-align:right"><{$page}></td>
+								</tr>
+                                <tr>
+									<td colspan="1" style="text-align:center"><input type="submit" value="修改" name="alter" class="button" /></td>
+								</tr>
+                                	<td colspan="1" style="text-align:center"><input type="hidden" value="<{$blist[0][id]}>" name="id" class="button" /></td>
+								</tr>
+								
+							</tfoot>
+						 
+							<tbody>
+           
+                               <tr onmouseover="trover(this)" onmouseout="trout(this)">
+                                	  <td colspan="1" style="text-align:left">
+									  新闻分类：
+									    <select name="c_id">
+                                          <volist name="clist" id="vo">
+											<if condition="$vo[c_id] eq $blist[0][c_id]" >
+
+                                            <option value="<{$vo[c_id]}>" selected >
+                                            <php> for($i=0;$i<$vo['count']*2;$i++){
+                                              echo "&nbsp;";
+                                              } </php>
+                                              <{$vo[name]}></option><br />
+
+											<else/>
+
+											<option value="<{$vo[c_id]}>" >
+                                            <php> for($i=0;$i<$vo['count']*2;$i++){
+                                              echo "&nbsp;";
+                                              } </php>
+                                              <{$vo[name]}></option><br />
+
+											</if>
+
+                                          </volist>
+                                        </select></td>
+							  </tr> 
+								<tr onmouseover="trover(this)" onmouseout="trout(this)">
+                                	  <td colspan="1" style="text-align:left">新闻标题：<input type="text" name="news_title"  style="width:400px;" value="<{$blist[0][news_title]}>" /></td>
+								</tr>  
+								<tr onmouseover="trover(this)" onmouseout="trout(this)">
+                                	  <td colspan="1" style="text-align:left">新闻作者：<input type="text" name="author"  value="<{$blist[0][author]}>" /></td>
+								</tr>
+								 <tr>
+                                	  <td colspan="1" style="text-align:left">发布时间：<input type="text" class="date_time" name="date_time"  value="<{$blist[0][date_time]|date='Y-m-d H:i:s',###}>"  readonly="readonly"/></td>
+								</tr>  
+								 <tr class="img_input">
+										  <td style="text-align:left">
+											
+											上传到首页或者子页的图片：
+											<img class="add_img" title="新增" src="__PUBLIC__/images/icons/add_file.png"/>
+											
+											
+										  </td>
+								</tr>
+								<volist name="imgs" id="vo" >
+								<tr>
+									
+										<td>
+										<img class='delete_file' title='删除' src='__PUBLIC__/images/icons/delete_file.png' />
+										　　　<span class="img_title"><{$vo[title]}></span>　
+										<img height=200 width=300 src='__PUBLIC__/upload/news/b_<{$vo[name]}>'/>
+
+										<input type='hidden' name='img_title[]' value='<{$vo[title]}>' />
+										<input type='hidden' name='img_name[]' value='<{$vo[name]}>' />
+										
+										</td>			
+									
+									
+								</tr>
+								</volist>
+
+								 <tr>
+										  <td style="text-align:left">
+											
+											上传附件：
+											<img class="add_file" title="新增" src="__PUBLIC__/images/icons/add_file.png"/>
+											<volist name="attachs" id="vo" >
+											<tr>
+									
+											
+											<td>
+												<img class='delete_file' title='删除' src='__PUBLIC__/images/icons/delete_file.png' />
+												　　　<span class="attach_title"><{$vo[title]}></span>
+
+												<input type='hidden' name='attach_title[]' value='<{$vo[title]}>' />
+												<input type='hidden' name='attach_name[]' value='<{$vo[name]}>' />
+												
+											</td>
+														
+									
+									
+											</tr>
+											</volist>
+												
+										  </td>
+								</tr>
+								
+								
+								
+								
+								<tr onmouseover="trover(this)" onmouseout="trout(this)">
+                                	  <td colspan="1" style="text-align:left"><{$fck}></td>
+								</tr> 
+								                 
+							</tbody>
+						</table>
+						<input type="hidden" name="id" value="<{$blist[0][id]}>"/>
+						<input type="hidden" class="audit_time" name="audit_time" value=""/>
+           </form>	
+					</div> <!-- End #tab1 -->
+                    
+          
+                    
+		</div> <!-- End #main-content -->
+		
+	</div>
+	<include file="../Public/footer" /> 
+	</body>
+
+</html>

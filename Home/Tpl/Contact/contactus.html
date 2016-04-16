@@ -1,0 +1,124 @@
+<include file="Public:head" />
+<include file="Public:header" />
+<!-- 内容 begin -->
+<div class="f_wrap">
+    <!-- 大轮播图 begin -->
+    <div class="w_slide" id="j-slide">
+        <div class="slidemain">
+            <ul class="clearfix">
+                <volist name="huo" id="v">
+                    <li><a href="javascript:void(0);"><img src="__PUBLIC__/upload/news/{$v.name}" alt="{$v.title}" title="{$v.title}"></a></li>
+                </volist>
+            </ul>
+        </div>
+        <div class="slidenav">
+            <ul>
+                <volist name="huo" id="v">
+                    <li class=""><a href="#">{$i}</a></li>
+                </volist>
+            </ul>
+        </div>
+    </div>
+    <!-- 大轮播图 end -->
+    <div class="f_row clearfix mt10">
+        <div class="f_aside">
+            <div class="m_box">
+                <div class="header clearfix">
+                    <h3>联系我们</h3>
+                </div>
+                <div class="body">
+                    <ul class="m_list">
+                        <li class="active"><a href="{:U('Contact/contactus')}">联系我们</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="m_box fwzx">
+                <div class="header clearfix">
+                    <h3>服务中心</h3>
+                </div>
+                <div class="body">
+                    <a href="{:U('News/newtab', array('c_id'=>15))}" title="人才招聘" class="ilink"></a>
+                    <a href="{:U('Contact/contactus')}" title="联系我们" class="img_lxwm ilink mt10"></a>
+                </div>
+            </div>
+        </div>
+        <div class="f_section">
+            <div class="m_bar">
+                <div class="header clearfix">
+                    <p class="tit">公司介绍</p>
+                    <div class="f_local">
+                        <div class="m_crumb">
+                            <span class="word">当前位置：</span>
+                            <a href="{:U('Index/index')}" class="">首页</a>
+                            <span class="gt">></span>
+                            <a href="{:U('Contact/contactus')}"  class="active">联系我们</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="body">
+                    <h1>{$list['news_title']}</h1>
+                    {$list['content']}
+                    <p>
+                        <br/><br/><br/>
+                    </p>
+                    <!-- 发送留言 begin -->
+                    <div class="g_send">
+                        <p class="header">发送留言</p>
+                        <ul>
+                            <li><label for="name">姓名/单位：</label><input class="txt" type="text" id="name" size="20" maxlength="64"><span style="color: red;">*</span></li>
+                            <li><label for="addr">地址：</label><input class="txt" type="text" id="addr" size="40" maxlength="64"></li>
+                            <li><label for="tel">手机：</label><input class="txt" type="text" id="tel" size="40" maxlength="11"></li>
+                            <li><label for="mail">邮箱：</label><input class="txt" type="text" id="mail" size="40" maxlength="64"><span style="color: red;">*</span></li>
+                            <li><label for="cont">留言内容：</label><textarea class="txtarea" type="text" id="cont" col="60" rows="6" maxlength="256"></textarea><span style="color: red;">*</span></li>
+                            <li><input type="submit" value="提交" class="btn_sub"><input type="reset" value="重置" class="btn_res"></li>
+                        </ul>
+                    </div>
+                    <!-- 发送留言 end -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 内容 end -->
+<include file='Public:footer'/>
+<script type="application/javascript">
+    $(document).ready(function(){
+        $('.btn_sub').click(function(){
+            var _name = $('#name').val(),
+                    _addr = $('#addr').val(),
+                    _phone = $('#tel').val(),
+                    _email = $('#mail').val(),
+                    _content = $('#cont').val();
+            var pat_mail = /^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/;
+            if (!$.trim(_name)) {
+                $('#name').focus();
+                alert('请填写您的姓名或者单位！');
+                return false;
+            }
+            if (!pat_mail.test(_email)) {
+                $('#mail').focus();
+                alert('请正确填写邮箱地址！');
+                return false;
+            }
+            if (!$.trim(_content)) {
+                $('#cont').focus();
+                alert('请填写内容！');
+                return false;
+            }
+            $.ajax({
+                url: "{:U('Contact/contactus')}",
+                dataType: 'json',
+                data : {author:_name, email:_email, phone:_phone, addr:_addr, content:_content},
+                type:'POST',
+                success : function(data){
+                    if (data.success = true) {
+                        alert('留言成功！');
+                        window.location.reload();
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        });
+    })
+</script>
