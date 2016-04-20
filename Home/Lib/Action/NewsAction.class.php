@@ -2,11 +2,6 @@
 // 本类由系统自动生成，仅供测试用途
 class NewsAction extends CommonAction{
     Public function _initialize(){
-        $seo['title'] = '建材网站';
-        $seo['keywords'] = '建筑材料 质量保证';
-        $seo['description'] = '建筑材料 质量保证';
-        $this->assign('seo', $seo);
-
         //显示logo
         $link=M('Link');
         $where_logo['type']='0';
@@ -28,6 +23,10 @@ class NewsAction extends CommonAction{
             $arr_files[]=array("title"=>_sort($arr_huo['news_title'],36),"time"=>date('Y/m/d',$arr_huo['date_time']),"name"=>$arr_file['name']);
         }
         $this->assign('huo',$arr_files);
+
+        //显示底部版权信息
+        $copyright = $base->where(array('id' => 39))->find();
+        $this->assign('copyright', $copyright);
 
         //友谊链接
         $link=M('Link');
@@ -112,6 +111,8 @@ class NewsAction extends CommonAction{
 			$con_id['status']='1';
 			$news=$base->where($con_id)->order('date_time desc')->limit(1)->select();
 			$this->assign('new',$news);
+            $seo['title'] = $news[0]['news_title'];
+            $this->assign('seo', $seo);
 			
 			//上一条
 			$up['id']=array('gt',$news[0]['id']);
@@ -135,8 +136,9 @@ class NewsAction extends CommonAction{
 				$arr_files = $file ->where($where_file) ->select(); 
 				$new[] = array("id"=>$n['id'],"c_id"=>$n['c_id'],"news_title"=>$n['news_title'],"autho"=>$n['autho'],"date_time"=>$n['date_time'],"content"=>$n['content'],"hit"=>$n['hit'],"file"=>$arr_files );
 			}
-			
 			$this->assign('new',$new);
+            $seo['title'] = $new[0]['news_title'];
+            $this->assign('seo', $seo);
 			
 			//上一条
 			$up['id']=array('gt',$_GET['id']);
@@ -180,9 +182,12 @@ class NewsAction extends CommonAction{
 				$have='0';
 			}
 			$arr[]=array("id"=>"{$all['id']}","c_id"=>"{$all['c_id']}","title"=>"{$all['news_title']}","sort"=>_sort($all['news_title'], 32),"time"=>date('Y-m-d',$all['date_time']),"file"=>$file,"have"=>$have);
-		}	
+		}
+
 		$this->assign('list',$arr);
 		$this->assign('page',$show);
+        $seo['title'] = self::getClassName((int)$_GET['c_id']);
+        $this->assign('seo', $seo);
 		
 		$this->display();
 	}
@@ -217,6 +222,8 @@ class NewsAction extends CommonAction{
         }
         $this->assign('list',$arr);
         $this->assign('page',$show);
+        $seo['title'] = self::getClassName((int)$_GET['c_id']);
+        $this->assign('seo', $seo);
         $this->display();
     }
 
@@ -239,6 +246,8 @@ class NewsAction extends CommonAction{
 
         $this->assign('new',$news);
         $this->assign('img', $arr_files);
+        $seo['title'] = $news['news_title'];
+        $this->assign('seo', $seo);
 
 //        print_r($news);die;
 
@@ -289,5 +298,14 @@ class NewsAction extends CommonAction{
 			echo "<span style='color:red;font-size:22px;'>The file is not exist!!!!</span>";
 		}
 	}
+
+    private function getClassName($cid) {
+        $class = M('Newsclass')->where(array('c_id' => $cid))->find();
+        if ($class['name']) {
+            return $class['name'];
+        } else {
+            return false;
+        }
+    }
 }
 ?>

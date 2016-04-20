@@ -33,6 +33,10 @@ class ContactAction extends CommonAction {
         $nav = $this -> _nav('联系我们');	//来自CommonAction
         $this->assign('nav',$nav);
 
+        //显示底部版权信息
+        $copyright = $base->where(array('id' => 39))->find();
+        $this->assign('copyright', $copyright);
+
         //友谊链接
         $link=M('Link');
         $wherel['type']='2';

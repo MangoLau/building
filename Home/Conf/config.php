@@ -1,10 +1,10 @@
 <?php
 $arr1 = array(
 		//'配置项'=>'配置值'
-		'URL_MODEL' =>'1',
+		'URL_MODEL' =>'2',
 		'URL_PATHINFO_MODEL' => '2',
 	    'APP_DEBUG' => true,
-        'URL_HTML_SUFFIX'=>'html',
+        'URL_HTML_SUFFIX'    => '.html',  // URL伪静态后缀设置
 
 		'TOKEN_ON'     =>   false, //是否开启令牌验证
 		//	模板左右标签

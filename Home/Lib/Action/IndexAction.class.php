@@ -6,6 +6,10 @@ class IndexAction extends CommonAction {
         $seo['keywords'] = '建筑材料 质量保证';
         $seo['description'] = '建筑材料 质量保证';
         $this->assign('seo', $seo);
+
+        //显示底部版权信息
+        $copyright = M('newsbase')->where(array('id' => 39))->find();
+        $this->assign('copyright', $copyright);
     }
 
     public function index(){
@@ -27,7 +31,7 @@ class IndexAction extends CommonAction {
 		$where_huo['c_id']='16';
 		$where_huo['status']='1';
 		$where_huo['display']='0';
-		$arr_huos=$base->field('id,news_title,date_time')->where($where_huo)->order('date_time desc')->limit(5)->select();
+		$arr_huos=$base->field('id,news_title,date_time')->where($where_huo)->order('date_time desc')->limit(8)->select();
 		foreach ($arr_huos as $arr_huo){
 			$where_file['n_id']=$arr_huo['id'];
 			$where_file['type']=1;
